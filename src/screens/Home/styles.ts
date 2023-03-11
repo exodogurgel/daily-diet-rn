@@ -4,8 +4,11 @@ import styled, { css } from 'styled-components/native'
 export const Container = styled(SafeAreaView)`
   align-items: center;
   flex: 1;
-  background-color: ${({ theme }) => theme.COLORS.GRAY_100};
   padding: 0 24px;
+
+  ${({ theme }) => css`
+    background-color: ${theme.COLORS.GRAY_100};
+  `}
 `
 
 export const Header = styled.View`
@@ -31,8 +34,12 @@ export const Profile = styled.Image`
 
 export const Title = styled.Text`
   ${({ theme }) => css`
-    font-size: ${theme.FONT_SIZE['2XL']};
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    color: ${theme.COLORS.RED_500};
+    font-size: ${theme.FONT_SIZE.MD};
+    font-family: ${theme.FONT_FAMILY.REGULAR};
+    color: ${theme.COLORS.GRAY_700};
   `}
+
+  margin-top: 40px;
+  margin-bottom: 8px;
+  align-self: flex-start;
 `

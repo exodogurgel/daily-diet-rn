@@ -17,7 +17,6 @@ export const Container = styled.View<Props>`
 
   align-items: center;
   justify-content: center;
-  gap: 4px;
 
   background-color: ${({ theme, type }) =>
     type === 'PRIMARY' ? theme.COLORS.GREEN_100 : theme.COLORS.RED_100};
