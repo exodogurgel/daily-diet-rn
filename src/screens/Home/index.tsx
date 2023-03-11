@@ -1,10 +1,9 @@
-import { Text } from 'react-native'
-import { Container } from './styles'
+import { Container, Title } from './styles'
 
 export function Home() {
   return (
     <Container>
-      <Text>Home</Text>
+      <Title>Home</Title>
     </Container>
   )
 }
