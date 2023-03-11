@@ -36,10 +36,9 @@ export const Title = styled.Text`
 
   flex: 1;
 `
-export type StatusTypeStyleProps = 'POSITIVE' | 'NEGATIVE'
 
 type StatusProps = {
-  status: StatusTypeStyleProps
+  status: boolean
 }
 
 export const Status = styled.View<StatusProps>`
@@ -48,5 +47,5 @@ export const Status = styled.View<StatusProps>`
   border-radius: 999px;
 
   background-color: ${({ theme, status }) =>
-    status === 'POSITIVE' ? theme.COLORS.GREEN_100 : theme.COLORS.RED_100};
+    status ? theme.COLORS.GREEN_100 : theme.COLORS.RED_100};
 `

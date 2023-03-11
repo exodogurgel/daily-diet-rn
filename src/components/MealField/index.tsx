@@ -1,15 +1,8 @@
 import { TouchableOpacityProps } from 'react-native'
-import {
-  Container,
-  Hour,
-  Separator,
-  Status,
-  StatusTypeStyleProps,
-  Title,
-} from './styles'
+import { Container, Hour, Separator, Status, Title } from './styles'
 
 type MealFieldProps = TouchableOpacityProps & {
-  status: StatusTypeStyleProps
+  status: boolean
   meal: string
   time: string
 }

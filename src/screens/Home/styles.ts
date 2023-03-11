@@ -43,3 +43,17 @@ export const Title = styled.Text`
   margin-bottom: 8px;
   align-self: flex-start;
 `
+
+export const SectionTitle = styled.Text`
+  ${({ theme }) => css`
+    font-size: ${theme.FONT_SIZE.LG};
+    font-family: ${theme.FONT_FAMILY.BOLD};
+    color: ${theme.COLORS.GRAY_700};
+    background-color: ${theme.COLORS.GRAY_100};
+  `}
+
+  width: 100%;
+  padding-top: 32px;
+  margin-bottom: 8px;
+  align-self: flex-start;
+`
