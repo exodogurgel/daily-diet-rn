@@ -8,7 +8,7 @@ import {
   NunitoSans_400Regular,
   NunitoSans_700Bold,
 } from '@expo-google-fonts/nunito-sans'
-import { ActivityIndicator } from 'react-native'
+import { Loading } from '@components/Loading'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -17,7 +17,7 @@ export default function App() {
   })
   return (
     <ThemeProvider theme={theme}>
-      {fontsLoaded ? <Home /> : <ActivityIndicator />}
+      {fontsLoaded ? <Home /> : <Loading />}
     </ThemeProvider>
   )
 }
