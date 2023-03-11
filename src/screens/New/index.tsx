@@ -1,10 +1,11 @@
-import { Text } from 'react-native'
-import { Container } from './styles'
+import { SectionHeader } from '@components/SectionHeader'
+import { Body, Container } from './styles'
 
 export function New() {
   return (
     <Container>
-      <Text>New</Text>
+      <SectionHeader title="Nova refeição" />
+      <Body></Body>
     </Container>
   )
 }

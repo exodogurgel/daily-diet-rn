@@ -1,5 +1,6 @@
 import { ArrowLeft } from 'phosphor-react-native'
 import { TouchableOpacity } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import styled, { css } from 'styled-components/native'
 
 export const Container = styled.View`
@@ -10,13 +11,12 @@ type HeaderStyleTypeProps = {
   isDietPositive: boolean
 }
 
-export const Header = styled.View<HeaderStyleTypeProps>`
+export const Header = styled(SafeAreaView)<HeaderStyleTypeProps>`
   background-color: ${({ theme, isDietPositive }) =>
     isDietPositive ? theme.COLORS.GREEN_100 : theme.COLORS.RED_100};
 
   height: 200px;
   width: 100%;
-  padding: 70px 32px 66px;
   position: relative;
 
   justify-content: center;

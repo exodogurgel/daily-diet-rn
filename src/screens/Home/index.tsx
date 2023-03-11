@@ -9,6 +9,7 @@ import { Container, Header, Logo, Profile, Title, SectionTitle } from './styles'
 
 import logoImg from '@assets/logo.png'
 import profileImg from '@assets/profile.png'
+import { useNavigation } from '@react-navigation/native'
 
 const MEALS = [
   {
@@ -89,6 +90,12 @@ const MEALS = [
 ]
 
 export function Home() {
+  const { navigate } = useNavigation()
+
+  function goNewPage() {
+    navigate('new')
+  }
+
   return (
     <Container>
       <Header>
@@ -99,7 +106,7 @@ export function Home() {
       <PercentInfo />
 
       <Title>Refeições</Title>
-      <Button icon={<Plus size={18} color="white" />} />
+      <Button onPress={goNewPage} icon={<Plus size={18} color="white" />} />
 
       <SectionList
         style={{

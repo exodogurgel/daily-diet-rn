@@ -7,9 +7,9 @@ type ButtonProps = TouchableOpacityProps & {
   icon?: ReactNode
 }
 
-export function Button({ type = 'PRIMARY', icon }: ButtonProps) {
+export function Button({ type = 'PRIMARY', icon, ...rest }: ButtonProps) {
   return (
-    <Container type={type}>
+    <Container type={type} {...rest}>
       {icon && icon}
       <Title type={type}>Nova refeição</Title>
     </Container>
