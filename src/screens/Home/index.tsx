@@ -5,6 +5,7 @@ import profileImg from '@assets/profile.png'
 import { PercentInfo } from '@components/PercentInfo'
 import { Button } from '@components/Button'
 import { Plus } from 'phosphor-react-native'
+import { MealField } from '@components/MealField'
 
 export function Home() {
   return (
@@ -18,6 +19,9 @@ export function Home() {
 
       <Title>Refeições</Title>
       <Button icon={<Plus size={18} color="white" />} />
+
+      <MealField status="NEGATIVE" meal="X-tudo" time="20:00" />
+      <MealField status="POSITIVE" meal="Salada com frango" time="16:00" />
     </Container>
   )
 }
