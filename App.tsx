@@ -1,15 +1,18 @@
 /* eslint-disable camelcase */
+import { StatusBar } from 'react-native'
+
 import { ThemeProvider } from 'styled-components/native'
 import theme from './src/theme'
 
-import { Home } from '@screens/Home'
 import {
   useFonts,
   NunitoSans_400Regular,
   NunitoSans_700Bold,
 } from '@expo-google-fonts/nunito-sans'
+
+import { Routes } from './src/routes'
+
 import { Loading } from '@components/Loading'
-import { StatusBar } from 'react-native'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -23,7 +26,7 @@ export default function App() {
         backgroundColor="transparent"
         translucent
       />
-      {fontsLoaded ? <Home /> : <Loading />}
+      {fontsLoaded ? <Routes /> : <Loading />}
     </ThemeProvider>
   )
 }

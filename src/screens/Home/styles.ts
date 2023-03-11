@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components/native'
 export const Container = styled(SafeAreaView)`
   align-items: center;
   flex: 1;
-  padding: 0 24px;
+  padding: 24px;
 
   ${({ theme }) => css`
     background-color: ${theme.COLORS.GRAY_100};
@@ -12,7 +12,6 @@ export const Container = styled(SafeAreaView)`
 `
 
 export const Header = styled.View`
-  padding-top: 66px;
   padding-bottom: 40px;
 
   flex-direction: row;

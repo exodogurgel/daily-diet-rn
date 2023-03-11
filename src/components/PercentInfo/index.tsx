@@ -1,5 +1,6 @@
 import { TouchableOpacityProps } from 'react-native'
 import { useTheme } from 'styled-components/native'
+import { useNavigation } from '@react-navigation/native'
 import {
   Button,
   Container,
@@ -13,12 +14,17 @@ type PercentProps = TouchableOpacityProps & {
   type?: PercentInfoTypeStyleProps
 }
 
-export function PercentInfo({ type = 'PRIMARY' }: PercentProps) {
+export function PercentInfo({ type = 'PRIMARY', ...rest }: PercentProps) {
   const { COLORS } = useTheme()
+  const navigation = useNavigation()
+
+  function goToStatistics() {
+    navigation.navigate('statistics')
+  }
 
   return (
     <Container type={type}>
-      <Button>
+      <Button onPress={goToStatistics} {...rest}>
         <OpenStatistics
           color={type === 'PRIMARY' ? COLORS.GREEN_500 : COLORS.RED_500}
         />
