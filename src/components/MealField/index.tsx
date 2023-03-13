@@ -7,9 +7,9 @@ type MealFieldProps = TouchableOpacityProps & {
   time: string
 }
 
-export function MealField({ status, meal, time }: MealFieldProps) {
+export function MealField({ status, meal, time, ...props }: MealFieldProps) {
   return (
-    <Container>
+    <Container {...props}>
       <Hour>{time}</Hour>
       <Separator />
       <Title>{meal}</Title>

@@ -96,6 +96,10 @@ export function Home() {
     navigate('new')
   }
 
+  function handleOpenMeal(id: string) {
+    navigate('meal', { id })
+  }
+
   return (
     <Container>
       <Header>
@@ -119,7 +123,12 @@ export function Home() {
         sections={MEALS}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <MealField status={item.inDiet} meal={item.name} time={item.hour} />
+          <MealField
+            status={item.inDiet}
+            meal={item.name}
+            time={item.hour}
+            onPress={() => handleOpenMeal(item.id)}
+          />
         )}
         showsVerticalScrollIndicator={false}
         renderSectionHeader={({ section: { title } }) => (

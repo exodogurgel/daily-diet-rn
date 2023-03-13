@@ -29,6 +29,7 @@ export default {
     SM: `${14}px`,
     MD: `${16}px`,
     LG: `${18}px`,
+    XX: `${20}px`,
     XL: `${24}px`,
     '2XL': `${32}px`,
   },
