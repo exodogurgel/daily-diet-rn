@@ -7,8 +7,7 @@ function maskDate(date: string) {
 
 function maskTime(hour: string) {
   hour = hour.replace(/\D/g, '')
-  hour = hour.replace(/^(\d{2})/, '$1:')
-  hour = hour.replace(/:(\d{2})(\d)/, ':$1')
+  hour = hour.replace(/^(\d{2})(\d)/, '$1:$2')
 
   return hour
 }
