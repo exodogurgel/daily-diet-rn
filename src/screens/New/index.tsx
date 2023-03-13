@@ -11,7 +11,11 @@ export function New() {
   const [time, setTime] = useState('')
 
   return (
-    <Container>
+    <Container
+      scrollEnabled={false}
+      keyboardShouldPersistTaps="handled"
+      contentContainerStyle={{ flexGrow: 1 }}
+    >
       <SectionHeader title="Nova refeição" />
       <Form>
         <Input label="Nome" />
@@ -34,7 +38,7 @@ export function New() {
             mask="TIME"
             maxLength={5}
             inputMaskChange={setTime}
-            keyboardType="number-pad"
+            keyboardType="numeric"
           />
         </DateAndTime>
 
