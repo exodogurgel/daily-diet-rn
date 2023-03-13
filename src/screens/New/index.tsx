@@ -7,6 +7,8 @@ import { Form, Container, DateAndTime, InDietContainer, Label } from './styles'
 
 export function New() {
   const [isActive, setIsActive] = useState<'IN-DIET' | 'OUT-DIET' | ''>('')
+  const [date, setDate] = useState('')
+  const [time, setTime] = useState('')
 
   return (
     <Container>
@@ -19,12 +21,20 @@ export function New() {
           <Input
             label="Data"
             size="SM"
-            keyboardType="numbers-and-punctuation"
+            value={date}
+            maxLength={8}
+            keyboardType="number-pad"
+            mask="DATE"
+            inputMaskChange={(text: string) => setDate(text)}
           />
           <Input
             label="Hora"
             size="SM"
-            keyboardType="numbers-and-punctuation"
+            value={time}
+            mask="TIME"
+            maxLength={5}
+            inputMaskChange={setTime}
+            keyboardType="number-pad"
           />
         </DateAndTime>
 
