@@ -4,7 +4,9 @@ export declare global {
     interface RootParamList {
       home: undefined
       new: undefined
-      feedback: undefined
+      feedback: {
+        inDiet: boolean
+      }
       statistics: undefined
       meal: {
         id: string

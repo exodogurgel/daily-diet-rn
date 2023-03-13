@@ -2,6 +2,7 @@ import { Button } from '@components/Button'
 import { ButtonSelect } from '@components/ButtonSelect'
 import { Input } from '@components/Input'
 import { SectionHeader } from '@components/SectionHeader'
+import { useNavigation } from '@react-navigation/native'
 import { useState } from 'react'
 import { Form, Container, DateAndTime, InDietContainer, Label } from './styles'
 
@@ -9,6 +10,14 @@ export function New() {
   const [isActive, setIsActive] = useState<'IN-DIET' | 'OUT-DIET' | ''>('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
+
+  const navigation = useNavigation()
+
+  const inDiet = isActive === 'IN-DIET'
+
+  function handleAddMeal() {
+    navigation.navigate('feedback', { inDiet })
+  }
 
   return (
     <Container
@@ -59,7 +68,11 @@ export function New() {
           />
         </InDietContainer>
 
-        <Button style={{ marginTop: 'auto' }} title="Cadastrar refeição" />
+        <Button
+          style={{ marginTop: 'auto' }}
+          title="Cadastrar refeição"
+          onPress={handleAddMeal}
+        />
       </Form>
     </Container>
   )
