@@ -5,13 +5,19 @@ import { ButtonTypeStyleProps, Container, Title } from './styles'
 type ButtonProps = TouchableOpacityProps & {
   type?: ButtonTypeStyleProps
   icon?: ReactNode
+  title: string
 }
 
-export function Button({ type = 'PRIMARY', icon, ...rest }: ButtonProps) {
+export function Button({
+  title,
+  type = 'PRIMARY',
+  icon,
+  ...rest
+}: ButtonProps) {
   return (
     <Container type={type} {...rest}>
       {icon && icon}
-      <Title type={type}>Nova refeição</Title>
+      <Title type={type}>{title}</Title>
     </Container>
   )
 }

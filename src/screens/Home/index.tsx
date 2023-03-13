@@ -106,7 +106,11 @@ export function Home() {
       <PercentInfo />
 
       <Title>Refeições</Title>
-      <Button onPress={goNewPage} icon={<Plus size={18} color="white" />} />
+      <Button
+        title="Nova refeição"
+        onPress={goNewPage}
+        icon={<Plus size={18} color="white" />}
+      />
 
       <SectionList
         style={{

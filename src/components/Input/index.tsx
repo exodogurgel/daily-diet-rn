@@ -21,7 +21,7 @@ export function Input({
   return (
     <Container size={size}>
       <Label>{label}</Label>
-      <InputContainer type={type} multiline {...props}></InputContainer>
+      <InputContainer type={type} {...props}></InputContainer>
     </Container>
   )
 }

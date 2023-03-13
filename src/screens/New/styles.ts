@@ -1,4 +1,4 @@
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 
 export const Container = styled.View`
   flex: 1;
@@ -23,6 +23,18 @@ export const DateAndTime = styled.View`
   gap: 20px;
 `
 
+export const Label = styled.Text`
+  ${({ theme }) => css`
+    color: ${theme.COLORS.GRAY_600};
+    font-size: ${theme.FONT_SIZE.SM};
+    font-family: ${theme.FONT_FAMILY.BOLD};
+  `}
+  margin-bottom: -16px;
+  align-self: flex-start;
+`
+
 export const InDietContainer = styled.View`
-  flex: 1;
+  width: 100%;
+  flex-direction: row;
+  gap: 8px;
 `
