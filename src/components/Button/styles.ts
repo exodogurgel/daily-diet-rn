@@ -13,7 +13,8 @@ export const Container = styled(TouchableOpacity)<Props>`
       ? theme.COLORS.GRAY_600
       : 'transparent'};
 
-    border: ${type === 'PRIMARY' ? 0 : `1px solid ${theme.COLORS.GRAY_700}`};
+    border-width: ${type === 'PRIMARY' ? 0 : '1px'};
+    border-color: ${type === 'PRIMARY' ? 0 : `${theme.COLORS.GRAY_700}`};
   `}
 
   width: 100%;

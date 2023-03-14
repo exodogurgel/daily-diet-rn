@@ -28,13 +28,15 @@ export const Container = styled(TouchableOpacity)<SelectStyleProps>`
     }
   }};
 
-  border: ${({ theme, status, isSelected }) => {
+  border-width: ${({ isSelected }) => (isSelected ? '1px' : 'none')};
+
+  border-color: ${({ theme, status, isSelected }) => {
     if (isSelected === 'IN-DIET' && status === 'IN-DIET') {
-      return `1px solid ${theme.COLORS.GREEN_500}`
+      return `${theme.COLORS.GREEN_500}`
     } else if (isSelected === 'OUT-DIET' && status === 'OUT-DIET') {
-      return `1px solid ${theme.COLORS.RED_500}`
+      return `${theme.COLORS.RED_500}`
     } else {
-      return 'none'
+      return 0
     }
   }};
 `

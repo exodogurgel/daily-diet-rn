@@ -4,8 +4,10 @@ import styled, { css } from 'styled-components/native'
 export const Container = styled(TouchableOpacity)`
   width: 100%;
   height: 50px;
-  border: 1px solid ${({ theme }) => theme.COLORS.GRAY_300};
   border-radius: 6px;
+
+  border-width: 1px;
+  border-color: ${({ theme }) => theme.COLORS.GRAY_300};
 
   flex-direction: row;
   align-items: center;

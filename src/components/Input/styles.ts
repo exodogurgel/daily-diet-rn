@@ -28,9 +28,11 @@ export const InputContainer = styled(TextInput)<Props>`
   `}
 
   background: transparent;
-  border: 1px solid ${({ theme }) => theme.COLORS.GRAY_300};
-  border-radius: 6px;
   padding: 14px;
+  border-radius: 6px;
+
+  border-width: 1px;
+  border-color: ${({ theme }) => theme.COLORS.GRAY_300};
 `
 
 export const Label = styled.Text`

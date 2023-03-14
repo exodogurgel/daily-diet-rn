@@ -28,7 +28,9 @@ export const Profile = styled.Image`
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  border: 2px solid ${({ theme }) => theme.COLORS.GRAY_600};
+
+  border-width: 2px;
+  border-color: ${({ theme }) => theme.COLORS.GRAY_600};
 `
 
 export const Title = styled.Text`
