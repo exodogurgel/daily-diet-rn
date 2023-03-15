@@ -2,7 +2,7 @@ export interface MealDTO {
   id: string
   name: string
   description: string
-  date: Date
-  hour: Date
+  date: string
+  hour: string
   inDiet: boolean
 }

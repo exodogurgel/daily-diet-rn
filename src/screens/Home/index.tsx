@@ -1,4 +1,10 @@
 import { SectionList } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+
+import { MealDTO } from 'src/dtos/MealDTO'
+
+import { getMealsByDate } from '@storage/meal/getMealsByDate'
+
 import { Plus } from 'phosphor-react-native'
 
 import { Button } from '@components/Button'
@@ -9,83 +15,72 @@ import { Container, Header, Logo, Profile, Title, SectionTitle } from './styles'
 
 import logoImg from '@assets/logo.png'
 import profileImg from '@assets/profile.png'
-import { useNavigation } from '@react-navigation/native'
 
-const MEALS = [
+const MEALS: MealDTO[] = [
   {
-    title: '12.08.22',
-    data: [
-      {
-        id: '1',
-        name: 'X-tudo',
-        description: '',
-        date: '12.08.22',
-        hour: '20:00',
-        inDiet: false,
-      },
-      {
-        id: '2',
-        name: 'Whey protein com leite',
-        description: '',
-        date: '12.08.22',
-        hour: '16:00',
-        inDiet: true,
-      },
-      {
-        id: '3',
-        name: 'Salada cesar com frango grelhado',
-        description: '',
-        date: '12.08.22',
-        hour: '12:30',
-        inDiet: true,
-      },
-      {
-        id: '4',
-        name: 'Vitamina de banana com abacate',
-        description: '',
-        date: '12.08.22',
-        hour: '09:30',
-        inDiet: true,
-      },
-    ],
+    id: '1',
+    name: 'X-tudo',
+    description: '',
+    date: '12.08.22',
+    hour: '20:00',
+    inDiet: false,
+  },
+  {
+    id: '2',
+    name: 'Whey protein com leite',
+    description: '',
+    date: '12.08.22',
+    hour: '16:00',
+    inDiet: true,
+  },
+  {
+    id: '3',
+    name: 'Salada cesar com frango grelhado',
+    description: '',
+    date: '12.08.22',
+    hour: '12:30',
+    inDiet: true,
+  },
+  {
+    id: '4',
+    name: 'Vitamina de banana com abacate',
+    description: '',
+    date: '12.08.22',
+    hour: '09:30',
+    inDiet: true,
   },
 
   {
-    title: '11.08.22',
-    data: [
-      {
-        id: '1',
-        name: 'X-tudo',
-        description: '',
-        date: '12.08.22',
-        hour: '20:00',
-        inDiet: false,
-      },
-      {
-        id: '2',
-        name: 'Whey protein com leite',
-        description: '',
-        date: '12.08.22',
-        hour: '16:00',
-        inDiet: true,
-      },
-      {
-        id: '3',
-        name: 'Salada cesar com frango grelhado',
-        description: '',
-        date: '12.08.22',
-        hour: '12:30',
-        inDiet: true,
-      },
-      {
-        id: '4',
-        name: 'Vitamina de banana com abacate',
-        description: '',
-        date: '12.08.22',
-        hour: '09:30',
-        inDiet: true,
-      },
-    ],
+    id: '5',
+    name: 'X-tudo',
+    description: '',
+    date: '11.08.22',
+    hour: '20:00',
+    inDiet: false,
+  },
+  {
+    id: '6',
+    name: 'Whey protein com leite',
+    description: '',
+    date: '11.08.22',
+    hour: '16:00',
+    inDiet: true,
+  },
+  {
+    id: '7',
+    name: 'Salada cesar com frango grelhado',
+    description: '',
+    date: '11.08.22',
+    hour: '12:30',
+    inDiet: true,
+  },
+  {
+    id: '8',
+    name: 'Vitamina de banana com abacate',
+    description: '',
+    date: '10.08.22',
+    hour: '09:30',
+    inDiet: true,
   },
 ]
 
@@ -99,6 +94,8 @@ export function Home() {
   function handleOpenMeal(id: string) {
     navigate('meal', { id })
   }
+
+  const mealsByDate = getMealsByDate(MEALS)
 
   return (
     <Container>
@@ -120,7 +117,7 @@ export function Home() {
         style={{
           width: '100%',
         }}
-        sections={MEALS}
+        sections={mealsByDate}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <MealField

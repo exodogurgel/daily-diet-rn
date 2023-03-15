@@ -1,22 +1,78 @@
+import { useState } from 'react'
+import { Alert } from 'react-native'
+import uuid from 'react-native-uuid'
+import { useNavigation } from '@react-navigation/native'
+
+import { AppError } from '@utils/AppError'
+import { validateHour } from '@utils/validate-hour'
+import { validateDate } from '@utils/validate-date'
+
+import { MealDTO } from 'src/dtos/MealDTO'
+
+import { createMeal } from '@storage/meal/createMeal'
+import { getAllMeals } from '@storage/meal/getAllMeals'
+
+import { Input } from '@components/Input'
 import { Button } from '@components/Button'
 import { ButtonSelect } from '@components/ButtonSelect'
-import { Input } from '@components/Input'
 import { SectionHeader } from '@components/SectionHeader'
-import { useNavigation } from '@react-navigation/native'
-import { useState } from 'react'
+
 import { Form, Container, DateAndTime, InDietContainer, Label } from './styles'
 
 export function New() {
   const [isActive, setIsActive] = useState<'IN-DIET' | 'OUT-DIET' | ''>('')
   const [date, setDate] = useState('')
   const [time, setTime] = useState('')
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
 
   const navigation = useNavigation()
 
   const inDiet = isActive === 'IN-DIET'
 
-  function handleAddMeal() {
-    navigation.navigate('feedback', { inDiet })
+  async function handleAddMeal() {
+    const isValidDate = validateDate(date)
+
+    if (!isValidDate) {
+      return Alert.alert(
+        'Data inválida',
+        'Digite uma data válida no formato DD/MM/AA',
+      )
+    }
+
+    const isHourValid = validateHour(time)
+
+    if (!isHourValid) {
+      return Alert.alert(
+        'Horário inválido',
+        'Digite um horário válido no formato 00:00',
+      )
+    }
+
+    const id = String(uuid.v4())
+
+    const newMeal: MealDTO = {
+      id,
+      name,
+      description,
+      date,
+      hour: time,
+      inDiet: isActive === 'IN-DIET',
+    }
+
+    try {
+      await createMeal(newMeal)
+    } catch (error) {
+      if (error instanceof AppError) {
+        return Alert.alert('Nova refeição', error.message)
+      } else {
+        return Alert.alert('Nova refeição', 'Não foi possível salvar.')
+      }
+    } finally {
+      navigation.navigate('feedback', { inDiet })
+      const meals = await getAllMeals()
+      console.log(meals)
+    }
   }
 
   return (
@@ -27,8 +83,14 @@ export function New() {
     >
       <SectionHeader title="Nova refeição" />
       <Form>
-        <Input label="Nome" />
-        <Input label="Descrição" type="TEXTAREA" multiline />
+        <Input label="Nome" onChangeText={setName} value={name} />
+        <Input
+          label="Descrição"
+          type="TEXTAREA"
+          multiline
+          onChangeText={setDescription}
+          value={description}
+        />
 
         <DateAndTime>
           <Input
