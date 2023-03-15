@@ -10,7 +10,6 @@ import { validateDate } from '@utils/validate-date'
 import { MealDTO } from 'src/dtos/MealDTO'
 
 import { createMeal } from '@storage/meal/createMeal'
-import { getAllMeals } from '@storage/meal/getAllMeals'
 
 import { Input } from '@components/Input'
 import { Button } from '@components/Button'
@@ -70,8 +69,6 @@ export function New() {
       }
     } finally {
       navigation.navigate('feedback', { inDiet })
-      const meals = await getAllMeals()
-      console.log(meals)
     }
   }
 

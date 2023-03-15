@@ -1,6 +1,6 @@
 import { MealDTO } from './MealDTO'
 
 export interface MealsHistoryDTO {
-  titleTime: string
+  title: string
   data: MealDTO[]
 }
