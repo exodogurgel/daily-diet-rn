@@ -25,7 +25,7 @@ export function PercentInfo({
   const navigation = useNavigation()
 
   function goToStatistics() {
-    navigation.navigate('statistics')
+    navigation.navigate('statistics', { percentInDiet })
   }
 
   return (

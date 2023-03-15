@@ -7,7 +7,9 @@ export declare global {
       feedback: {
         inDiet: boolean
       }
-      statistics: undefined
+      statistics: {
+        percentInDiet: number
+      }
       meal: {
         id: string
       }
