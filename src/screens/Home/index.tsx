@@ -26,7 +26,7 @@ export function Home() {
   const { navigate } = useNavigation()
 
   function goNewPage() {
-    navigate('new')
+    navigate('new', {})
   }
 
   function handleOpenMeal(id: string) {

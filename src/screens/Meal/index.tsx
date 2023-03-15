@@ -1,6 +1,10 @@
 import { useCallback, useState } from 'react'
 import { PencilSimpleLine, Trash } from 'phosphor-react-native'
-import { useFocusEffect, useRoute } from '@react-navigation/native'
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native'
 
 import { MealDTO } from 'src/dtos/MealDTO'
 
@@ -32,6 +36,12 @@ export function Meal() {
 
   const route = useRoute()
   const { id } = route.params as RouteParams
+
+  const navigation = useNavigation()
+
+  function handleGoToEditMeal() {
+    navigation.navigate('new', { id })
+  }
 
   useFocusEffect(
     useCallback(() => {
@@ -75,6 +85,7 @@ export function Meal() {
 
           <Footer>
             <Button
+              onPress={handleGoToEditMeal}
               icon={<PencilSimpleLine color="white" />}
               title="Editar refeição"
             />

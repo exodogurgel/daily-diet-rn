@@ -1,7 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import { New } from '@screens/New'
-import { Edit } from '@screens/Edit'
+import { NewAndEdit } from '@screens/NewAndEdit'
 import { Meal } from '@screens/Meal'
 import { Home } from '@screens/Home'
 import { Feedback } from '@screens/Feedback'
@@ -14,10 +13,9 @@ export function AppRoutes() {
     <Navigator screenOptions={{ headerShown: false }}>
       <Screen name="home" component={Home} />
       <Screen name="statistics" component={Statistics} />
-      <Screen name="edit" component={Edit} />
       <Screen name="feedback" component={Feedback} />
       <Screen name="meal" component={Meal} />
-      <Screen name="new" component={New} />
+      <Screen name="new" component={NewAndEdit} />
     </Navigator>
   )
 }
