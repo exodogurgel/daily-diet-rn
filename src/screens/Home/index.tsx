@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import { SectionList } from 'react-native'
 import { useCallback, useState } from 'react'
 import { useFocusEffect, useNavigation } from '@react-navigation/native'
@@ -20,6 +21,7 @@ import profileImg from '@assets/profile.png'
 
 export function Home() {
   const [meals, setMeals] = useState<MealsHistoryDTO[]>([])
+  const [percentInDiet, setPercentInDiet] = useState(0)
 
   const { navigate } = useNavigation()
 
@@ -31,13 +33,27 @@ export function Home() {
     navigate('meal', { id })
   }
 
+  async function calculatePercentageWithinDiet() {
+    const meals = await getAllMeals()
+
+    const mealsWithinDiet = meals.reduce((acc, meal) => {
+      meal.inDiet ? (acc += 1) : acc
+
+      return acc
+    }, 0)
+
+    const percent = (mealsWithinDiet / meals.length) * 100
+
+    setPercentInDiet(percent)
+  }
+
   async function fetchMeals() {
     try {
       const data = await getAllMeals()
 
       const mealsByDate = getMealsByDate(data)
 
-      setMeals(mealsByDate)
+      setMeals(mealsByDate.sort().reverse())
     } catch (error) {
       console.log(error)
     }
@@ -49,6 +65,12 @@ export function Home() {
     }, []),
   )
 
+  useFocusEffect(
+    useCallback(() => {
+      calculatePercentageWithinDiet()
+    }, []),
+  )
+
   return (
     <Container>
       <Header>
@@ -56,7 +78,10 @@ export function Home() {
         <Profile source={profileImg} />
       </Header>
 
-      <PercentInfo />
+      <PercentInfo
+        percentInDiet={percentInDiet}
+        type={percentInDiet >= 50 ? 'PRIMARY' : 'SECONDARY'}
+      />
 
       <Title>Refeições</Title>
       <Button

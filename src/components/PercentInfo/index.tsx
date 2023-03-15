@@ -12,9 +12,14 @@ import {
 
 type PercentProps = TouchableOpacityProps & {
   type?: PercentInfoTypeStyleProps
+  percentInDiet: number
 }
 
-export function PercentInfo({ type = 'PRIMARY', ...rest }: PercentProps) {
+export function PercentInfo({
+  percentInDiet,
+  type = 'PRIMARY',
+  ...rest
+}: PercentProps) {
   const { COLORS } = useTheme()
   const navigation = useNavigation()
 
@@ -29,7 +34,7 @@ export function PercentInfo({ type = 'PRIMARY', ...rest }: PercentProps) {
           color={type === 'PRIMARY' ? COLORS.GREEN_500 : COLORS.RED_500}
         />
       </Button>
-      <Title>90,86%</Title>
+      <Title>{percentInDiet.toFixed(2)}%</Title>
       <SubTitle>das refeições dentro da dieta</SubTitle>
     </Container>
   )
