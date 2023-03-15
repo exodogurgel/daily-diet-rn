@@ -9,6 +9,7 @@ import {
   SubTitle,
   Title,
 } from './styles'
+import { verifyIfDecimalNumber } from '@utils/verify-if-decimal-number'
 
 type PercentProps = TouchableOpacityProps & {
   type?: PercentInfoTypeStyleProps
@@ -34,7 +35,7 @@ export function PercentInfo({
           color={type === 'PRIMARY' ? COLORS.GREEN_500 : COLORS.RED_500}
         />
       </Button>
-      <Title>{percentInDiet.toFixed(2)}%</Title>
+      <Title>{verifyIfDecimalNumber(percentInDiet)}%</Title>
       <SubTitle>das refeições dentro da dieta</SubTitle>
     </Container>
   )
