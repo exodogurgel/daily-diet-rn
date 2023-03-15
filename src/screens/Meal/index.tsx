@@ -1,6 +1,15 @@
-import { Button } from '@components/Button'
-import { SectionHeader } from '@components/SectionHeader'
+import { useCallback, useState } from 'react'
 import { PencilSimpleLine, Trash } from 'phosphor-react-native'
+import { useFocusEffect, useRoute } from '@react-navigation/native'
+
+import { MealDTO } from 'src/dtos/MealDTO'
+
+import { getAllMeals } from '@storage/meal/getAllMeals'
+
+import { Button } from '@components/Button'
+import { Loading } from '@components/Loading'
+import { SectionHeader } from '@components/SectionHeader'
+
 import {
   Container,
   Content,
@@ -14,35 +23,73 @@ import {
   TitleStatus,
 } from './styles'
 
+type RouteParams = {
+  id: string
+}
+
 export function Meal() {
-  const inDiet = true
+  const [meal, setMeal] = useState<MealDTO>()
+
+  const route = useRoute()
+  const { id } = route.params as RouteParams
+
+  useFocusEffect(
+    useCallback(() => {
+      async function fetchMeal() {
+        try {
+          const meals = await getAllMeals()
+
+          const meal = meals.find((meal) => meal.id === id)
+
+          setMeal(meal)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+
+      fetchMeal()
+    }, [id]),
+  )
+
   return (
     <Container>
-      <SectionHeader title="Refeição" bgColor={inDiet ? 'GREEN' : 'RED'} />
-      <Content>
-        <Title>Sanduíche</Title>
-        <Description>
-          Sanduíche de pão integral com atum e salada de alface e tomate
-        </Description>
+      <SectionHeader
+        title="Refeição"
+        bgColor={meal?.inDiet ? 'GREEN' : 'RED'}
+      />
 
-        <Subtitle>Data e hora</Subtitle>
-        <DateAndTime>12/08/2022 às 16:00</DateAndTime>
+      {meal ? (
+        <Content>
+          <Title>{meal.name}</Title>
+          <Description>{meal.description}</Description>
 
-        <MealStatus>
-          <Status inDiet={inDiet} />
-          <TitleStatus>
-            {inDiet ? 'dentro da dieta' : 'fora da dieta'}
-          </TitleStatus>
-        </MealStatus>
+          <Subtitle>Data e hora</Subtitle>
+          <DateAndTime>{`${meal.date} às ${meal.hour}`}</DateAndTime>
 
-        <Footer>
-          <Button
-            icon={<PencilSimpleLine color="white" />}
-            title="Editar refeição"
-          />
-          <Button icon={<Trash />} title="Excluir refeição" type="SECONDARY" />
-        </Footer>
-      </Content>
+          <MealStatus>
+            <Status inDiet={meal.inDiet} />
+            <TitleStatus>
+              {meal.inDiet ? 'dentro da dieta' : 'fora da dieta'}
+            </TitleStatus>
+          </MealStatus>
+
+          <Footer>
+            <Button
+              icon={<PencilSimpleLine color="white" />}
+              title="Editar refeição"
+            />
+            <Button
+              icon={<Trash />}
+              title="Excluir refeição"
+              type="SECONDARY"
+            />
+          </Footer>
+        </Content>
+      ) : (
+        <Content>
+          <Loading />
+        </Content>
+      )}
     </Container>
   )
 }
