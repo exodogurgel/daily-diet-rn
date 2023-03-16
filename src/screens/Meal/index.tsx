@@ -1,5 +1,5 @@
+import { Alert } from 'react-native'
 import { useCallback, useState } from 'react'
-import { PencilSimpleLine, Trash } from 'phosphor-react-native'
 import {
   useFocusEffect,
   useNavigation,
@@ -7,6 +7,9 @@ import {
 } from '@react-navigation/native'
 
 import { MealDTO } from 'src/dtos/MealDTO'
+import { PencilSimpleLine, Trash } from 'phosphor-react-native'
+
+import { removeMealById } from '@storage/meal/removeMealById'
 
 import { getAllMeals } from '@storage/meal/getAllMeals'
 
@@ -41,6 +44,24 @@ export function Meal() {
 
   function handleGoToEditMeal() {
     navigation.navigate('new', { id })
+  }
+
+  async function removeMeal() {
+    try {
+      await removeMealById(id!)
+    } catch (error) {
+      console.log(error)
+      Alert.alert('Remover refeição', 'Não foi possível remover essa refeição.')
+    } finally {
+      navigation.navigate('home')
+    }
+  }
+
+  async function handleRemoveMeal() {
+    Alert.alert('Remover', 'Deseja realmente excluir o registro da refeição?', [
+      { text: 'Cancelar', style: 'cancel' },
+      { text: 'Sim, excluir', onPress: () => removeMeal() },
+    ])
   }
 
   useFocusEffect(
@@ -90,6 +111,7 @@ export function Meal() {
               title="Editar refeição"
             />
             <Button
+              onPress={handleRemoveMeal}
               icon={<Trash />}
               title="Excluir refeição"
               type="SECONDARY"
